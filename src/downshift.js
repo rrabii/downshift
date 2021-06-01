@@ -1087,30 +1087,30 @@ class Downshift extends Component {
         this.isTouchMove = true
       }
 
-      const onTouchEnd = event => {
-        const contextWithinDownshift = targetWithinDownshift(
-          event.target,
-          [this._rootNode, this._menuNode],
-          this.props.environment,
-          false,
-        )
-        if (
-          !this.isTouchMove &&
-          !contextWithinDownshift &&
-          this.getState().isOpen
-        ) {
-          this.reset({type: stateChangeTypes.touchEnd}, () =>
-            this.props.onOuterClick(this.getStateAndHelpers()),
-          )
-        }
-      }
+      // const onTouchEnd = event => {
+      //   const contextWithinDownshift = targetWithinDownshift(
+      //     event.target,
+      //     [this._rootNode, this._menuNode],
+      //     this.props.environment,
+      //     false,
+      //   )
+      //   if (
+      //     !this.isTouchMove &&
+      //     !contextWithinDownshift &&
+      //     this.getState().isOpen
+      //   ) {
+      //     this.reset({type: stateChangeTypes.touchEnd}, () =>
+      //       this.props.onOuterClick(this.getStateAndHelpers()),
+      //     )
+      //   }
+      // }
       const {environment} = this.props
 
       environment.addEventListener('mousedown', onMouseDown)
       environment.addEventListener('mouseup', onMouseUp)
       environment.addEventListener('touchstart', onTouchStart)
       environment.addEventListener('touchmove', onTouchMove)
-      environment.addEventListener('touchend', onTouchEnd)
+      // environment.addEventListener('touchend', onTouchEnd)
 
       this.cleanup = () => {
         this.internalClearTimeouts()
@@ -1119,7 +1119,7 @@ class Downshift extends Component {
         environment.removeEventListener('mouseup', onMouseUp)
         environment.removeEventListener('touchstart', onTouchStart)
         environment.removeEventListener('touchmove', onTouchMove)
-        environment.removeEventListener('touchend', onTouchEnd)
+        // environment.removeEventListener('touchend', onTouchEnd)
       }
     }
   }
